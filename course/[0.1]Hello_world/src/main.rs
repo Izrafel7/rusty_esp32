@@ -17,6 +17,7 @@ use esp_println as _;
 esp_bootloader_esp_idf::esp_app_desc!();
 
 // Custom attribute macro from esp_hal that marks the entry point
+// The `-> !` return type means this function is designed to run forever
 #[main]
 fn main() -> ! {
     // Initializes the chip's internal peripherals, clocks, and power configurations
@@ -24,6 +25,7 @@ fn main() -> ! {
 
     // Creates a new delay provider using the chip's hardware timers.
     let delay = Delay::new();
+	
     // Unlike a normal desktop script that finishes and exits, embedded systems run 
 	// forever.
     loop {

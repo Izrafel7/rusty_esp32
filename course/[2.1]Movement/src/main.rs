@@ -26,7 +26,6 @@ fn main() -> ! {
     );
 
     let delay = Delay::new();
-
     // Delay gives sensors time to warm up or stabilize right after turning on.
     delay.delay_millis(8000);
 

@@ -18,11 +18,13 @@ fn main() -> ! {
     let peripherals = esp_hal::init(esp_hal::Config::default());
 	
     defmt::println!("Initializing blinking LED");
+	
     // Configures physical pin GPIO23 as an Output pin and sets its initial state to 
 	// Low with default pin configuration
     let mut led = Output::new(peripherals.GPIO23, Level::Low, OutputConfig::default());
 
     let delay = Delay::new();
+	
     loop {
         // Toggles the LED state: on => off or off => on
         led.toggle();
