@@ -1,4 +1,20 @@
 // Simple button driver that allows input debouncing
+//
+// Standard button pinout
+//
+//   +---------------------+
+//   |   D |         | C   |
+//   |     +---------+     |
+//   |     |\   O   /|     |
+//   |     | |O O O| |     |
+//   |     |/   O   \|     |
+//   |     +---------+     |
+//   |   A |         | B   |
+//   +---------------------+
+//
+// Wiring: A-D are connected by default, so are B-C
+//         Connect one of pins to GND, 
+//         second (not connected to first one) to ESP32 GPIO
 
 // -`time`: A module with utilities for time measurement
 use esp_hal::{
