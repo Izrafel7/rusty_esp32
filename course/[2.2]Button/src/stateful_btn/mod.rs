@@ -1,3 +1,5 @@
+// Simple button driver that allows input debouncing
+
 // -`time`: A module with utilities for time measurement
 use esp_hal::{
     gpio::Input,
