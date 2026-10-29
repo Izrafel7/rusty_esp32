@@ -1,0 +1,24 @@
+[package]
+name = "shift_digit"
+version = "0.1.0"
+edition = "2024"
+authors = ["Michał Krupski <mi.krupski@gmail.com>"]
+license = "MIT"
+publish = false
+
+[dependencies]
+defmt = { version = "1.2.0" }
+esp-backtrace = { version = "0.20.0", features = [
+    "esp32c6",
+    "panic-handler",
+    "defmt",
+] }
+esp-bootloader-esp-idf = { version = "0.6.0", features = ["esp32c6"] }
+esp-hal = { version = "1.2.2",features = [
+    "esp32c6",
+    "unstable",
+] }
+esp-println = { version = "0.18.0", features = [
+    "esp32c6", 
+    "defmt-espflash",
+] }
