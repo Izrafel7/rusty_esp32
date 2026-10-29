@@ -13,7 +13,7 @@
 //   +---------------------+
 //
 // Wiring: A-D are connected by default, so are B-C
-//         Connect one of pins to GND, 
+//         Connect one of pins to GND,
 //         second (not connected to first one) to ESP32 GPIO
 
 // -`time`: A module with utilities for time measurement
@@ -63,6 +63,8 @@ impl Debouncer {
 }
 
 // Button struct couples input with designated timer
+// It allows filtering false signals so the system
+// recognizes only one intentional press or release
 pub struct StatefulBtn<'a> {
     input: Input<'a>,
     debouncer: Debouncer,
@@ -78,21 +80,22 @@ impl<'a> StatefulBtn<'a> {
     }
 
     // We get Low - pressed, High - released
+    // After initial press, button can register a few of rapid-fire clicks,
+    // so after one we activate debounce timer
     pub fn get_state(&mut self) -> BtnState {
         match (
             self.input.is_high(),
             self.debouncer.is_debounce_timeuot_active(),
         ) {
-            (true, true) => BtnState::Pressed,
-            (true, false) => {
-                self.debouncer.unclick();
-                BtnState::Released
-            }
-            (false, true) => BtnState::Pressed,
             (false, false) => {
                 self.debouncer.click();
                 BtnState::Pressed
             }
+            (true, false) => {
+                self.debouncer.unclick();
+                BtnState::Released
+            }
+            _ => BtnState::Pressed,
         }
     }
 }
