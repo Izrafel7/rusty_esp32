@@ -40,6 +40,7 @@ const DIGIT_SEGMENTS: [u8; 10] = [
 ];
 
 // 8 pins to be stored
+// - `'a`: A lifetime parameter required because the Output borrows hardware references.
 pub struct Display5161AS<'a> {
     pins: [Output<'a>; 8], // A, B, C, D, E, F, G, DP
 }
