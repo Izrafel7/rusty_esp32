@@ -18,6 +18,8 @@ esp_bootloader_esp_idf::esp_app_desc!();
 fn main() -> ! {
     let peripherals = esp_hal::init(esp_hal::Config::default());
 
+    defmt::println!("Initializing button driver");
+
     // Button connected to GND so High level means it is released
     // `Pull::Up` keeps it that way
     let input = Input::new(
