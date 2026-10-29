@@ -25,6 +25,7 @@ fn main() -> ! {
     let mut adc_config = AdcConfig::new();
     // Enables GPIO0 as an analog input pin with an 11dB attenuation
     // (whole spectrum, up to 3.3V)
+	// readings go from 0 to 4095 (13-bit logic), it does not represent millivolts
     let analog_pin = adc_config.enable_pin(peripherals.GPIO0, Attenuation::_11dB);
     // Initializes the ADC1 peripheral using our configuration
     let adc1 = Adc::new(peripherals.ADC1, adc_config);
